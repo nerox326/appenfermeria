@@ -1,3 +1,4 @@
+/* Fondo de la página */
 body {
   font-family: Arial, sans-serif;
   background-color: #e0f7fa; /* Fondo claro azul-verde como cielo */
@@ -6,15 +7,14 @@ body {
   background-image: url('https://ethic.es/wp-content/uploads/2021/06/restaurar-5-rec-2-rec-def.jpg');
   background-size: cover;
   background-position: center center;
-  color: #fff;
-  overflow: hidden; /* Evita que la página haga scroll */
+  color: #000; /* Texto en negro por defecto en todo el cuerpo */
+  overflow-y: scroll; /* Permitir el scroll vertical */
   height: 100vh; /* Asegura que el body ocupe toda la altura de la ventana */
 }
 
 html {
   height: 100%;
 }
-
 
 header {
   background-color: rgba(0, 128, 0, 0.7); /* Verde semitransparente */
@@ -94,16 +94,19 @@ footer {
   color: white;
 }
 
+/* Sección de preguntas múltiples */
 #preguntas {
   margin-top: 30px;
   background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #000; /* Asegurar que todo el texto dentro de esta sección sea negro */
 }
 
 .pregunta {
   margin-bottom: 20px;
+  font-size: 1.2em;
 }
 
 label {
