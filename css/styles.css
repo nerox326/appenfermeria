@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 1em;
+    text-align: center;
+  }
+  
+  h1, h2 {
+    font-size: 1.5em;
+  }
+  
+  #steps {
+    list-style: none;
+    padding: 0;
+  }
+  
+  #steps li {
+    padding: 10px;
+    margin: 5px 0;
+    background: #e0e0e0;
+    border: 1px solid #ccc;
+    cursor: move;
+    font-size: 1.2em;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    margin: 10px 0;
+  }
+  
+  input {
+    font-size: 1em;
+    padding: 5px;
+  }
+  
+  p {
+    font-size: 1.2em;
+  }
+  
