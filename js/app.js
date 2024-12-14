@@ -1,48 +1,50 @@
-// Módulo de Orden Secuencial (Arrastrar y Soltar)
+// Módulo de Orden Secuencial
 const steps = document.querySelectorAll("#steps li");
-const stepsList = document.getElementById("steps");
+const stepsContainer = document.getElementById("steps");
 const feedback = document.getElementById("feedback");
 
-let draggedElement = null;
-
+// Añadir eventos para arrastrar y soltar
 steps.forEach((step) => {
-  step.addEventListener("dragstart", (e) => {
-    draggedElement = step;
+  step.addEventListener("dragstart", () => {
     step.classList.add("dragging");
   });
 
-  step.addEventListener("dragend", (e) => {
+  step.addEventListener("dragend", () => {
     step.classList.remove("dragging");
-    draggedElement = null;
   });
 });
 
-stepsList.addEventListener("dragover", (e) => {
+stepsContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
-  const afterElement = getDragAfterElement(stepsList, e.clientY);
+  const afterElement = getDragAfterElement(stepsContainer, e.clientY);
+  const dragging = document.querySelector(".dragging");
   if (afterElement == null) {
-    stepsList.appendChild(draggedElement);
+    stepsContainer.appendChild(dragging);
   } else {
-    stepsList.insertBefore(draggedElement, afterElement);
+    stepsContainer.insertBefore(dragging, afterElement);
   }
 });
 
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
 
-  return draggableElements.reduce((closest, child) => {
-    const box = child.getBoundingClientRect();
-    const offset = y - box.top - box.height / 2;
-    if (offset < 0 && offset > closest.offset) {
-      return { offset: offset, element: child };
-    } else {
-      return closest;
-    }
-  }, { offset: Number.NEGATIVE_INFINITY }).element;
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
 }
 
 document.getElementById("check-order").addEventListener("click", () => {
-  const currentOrder = Array.from(stepsList.querySelectorAll("li")).map((step) => step.textContent.trim());
+  const currentOrder = Array.from(document.querySelectorAll("#steps li")).map((step) => step.textContent);
+
   const correctOrder = [
     "Abrir la ducha",
     "Mojarse el cuerpo",
@@ -70,7 +72,7 @@ document.getElementById("check-answer").addEventListener("click", () => {
   }
 });
 
-// Preguntas de Selección Múltiple
+// Módulo de Preguntas de Selección Múltiple
 document.getElementById("check-quiz").addEventListener("click", () => {
   const quizFeedback = document.getElementById("quiz-feedback");
   let correctas = 0;
