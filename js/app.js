@@ -72,7 +72,7 @@ document.getElementById("check-answer").addEventListener("click", () => {
 });
 
 document.getElementById("submit-quiz").addEventListener("click", () => {
-  const respuestas = {
+  const respuestasCorrectas = {
     q1: "a",  // Respuesta correcta para la pregunta 1
     q2: "a",  // Respuesta correcta para la pregunta 2
     q3: "a",  // Respuesta correcta para la pregunta 3
@@ -81,21 +81,32 @@ document.getElementById("submit-quiz").addEventListener("click", () => {
   
   let score = 0;
   let feedback = "";
+  let incorrectAnswers = [];
 
   // Verificar las respuestas
   for (let i = 1; i <= 4; i++) {
     const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
-    if (selectedAnswer && selectedAnswer.value === respuestas[`q${i}`]) {
-      score++;
+    if (selectedAnswer) {
+      if (selectedAnswer.value === respuestasCorrectas[`q${i}`]) {
+        score++;
+      } else {
+        incorrectAnswers.push(`Pregunta ${i}`);
+      }
+    } else {
+      incorrectAnswers.push(`Pregunta ${i} (sin respuesta)`);
     }
   }
 
-  // Dar retroalimentación
+  // Generar el mensaje de retroalimentación
   if (score === 4) {
     feedback = "¡Todas las respuestas son correctas!";
   } else {
     feedback = `Has acertado ${score} de 4 respuestas.`;
+    if (incorrectAnswers.length > 0) {
+      feedback += ` Respuestas incorrectas: ${incorrectAnswers.join(", ")}.`;
+    }
   }
 
+  // Mostrar el resultado en el elemento de retroalimentación
   document.getElementById("quiz-feedback").textContent = feedback;
 });
