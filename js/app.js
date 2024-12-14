@@ -1,9 +1,10 @@
 // Módulo de Orden Secuencial
 const steps = document.querySelectorAll("#steps li");
+const stepsContainer = document.getElementById("steps");
 const feedback = document.getElementById("feedback");
-let order = [];
 
-steps.forEach((step, index) => {
+// Añadir eventos para arrastrar y soltar
+steps.forEach((step) => {
   step.addEventListener("dragstart", () => {
     step.classList.add("dragging");
   });
@@ -13,9 +14,37 @@ steps.forEach((step, index) => {
   });
 });
 
+stepsContainer.addEventListener("dragover", (e) => {
+  e.preventDefault();
+  const afterElement = getDragAfterElement(stepsContainer, e.clientY);
+  const dragging = document.querySelector(".dragging");
+  if (afterElement == null) {
+    stepsContainer.appendChild(dragging);
+  } else {
+    stepsContainer.insertBefore(dragging, afterElement);
+  }
+});
+
+function getDragAfterElement(container, y) {
+  const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
+
+  return draggableElements.reduce(
+    (closest, child) => {
+      const box = child.getBoundingClientRect();
+      const offset = y - box.top - box.height / 2;
+      if (offset < 0 && offset > closest.offset) {
+        return { offset, element: child };
+      } else {
+        return closest;
+      }
+    },
+    { offset: Number.NEGATIVE_INFINITY }
+  ).element;
+}
+
 document.getElementById("check-order").addEventListener("click", () => {
   const currentOrder = Array.from(document.querySelectorAll("#steps li"))
-    .map(step => step.textContent);
+    .map((step) => step.textContent);
 
   const correctOrder = [
     "Abrir la ducha",
