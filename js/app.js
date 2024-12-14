@@ -1,9 +1,9 @@
 // Módulo de Orden Secuencial
 const steps = document.querySelectorAll("#steps li");
 const feedback = document.getElementById("feedback");
+let order = [];
 
-// Función para manejar el inicio y fin del arrastre
-steps.forEach((step) => {
+steps.forEach((step, index) => {
   step.addEventListener("dragstart", () => {
     step.classList.add("dragging");
   });
@@ -34,32 +34,10 @@ document.getElementById("check-order").addEventListener("click", () => {
 document.getElementById("check-answer").addEventListener("click", () => {
   const respuesta = parseInt(document.getElementById("respuesta").value);
   const resultado = document.getElementById("resultado");
-
+  
   if (respuesta === 55) {
     resultado.textContent = "¡Correcto!";
   } else {
     resultado.textContent = "Respuesta incorrecta. Intenta de nuevo.";
   }
-});
-
-// Módulo de Preguntas de Opción Múltiple
-document.getElementById("submit-questions").addEventListener("click", () => {
-  const respuestas = {
-    pregunta1: document.querySelector('input[name="pregunta1"]:checked'),
-    pregunta2: document.querySelector('input[name="pregunta2"]:checked'),
-    pregunta3: document.querySelector('input[name="pregunta3"]:checked'),
-    pregunta4: document.querySelector('input[name="pregunta4"]:checked')
-  };
-
-  let resultado = "Respuestas seleccionadas:\n";
-
-  for (let pregunta in respuestas) {
-    if (respuestas[pregunta]) {
-      resultado += `${pregunta}: ${respuestas[pregunta].value}\n`;
-    } else {
-      resultado += `${pregunta}: No respondida\n`;
-    }
-  }
-
-  alert(resultado); // Muestra las respuestas seleccionadas
 });
