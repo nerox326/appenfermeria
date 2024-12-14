@@ -71,3 +71,31 @@ document.getElementById("check-answer").addEventListener("click", () => {
   }
 });
 
+document.getElementById("submit-quiz").addEventListener("click", () => {
+  const respuestas = {
+    q1: "a",  // Respuesta correcta para la pregunta 1
+    q2: "a",  // Respuesta correcta para la pregunta 2
+    q3: "a",  // Respuesta correcta para la pregunta 3
+    q4: "c",  // Respuesta correcta para la pregunta 4
+  };
+  
+  let score = 0;
+  let feedback = "";
+
+  // Verificar las respuestas
+  for (let i = 1; i <= 4; i++) {
+    const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selectedAnswer && selectedAnswer.value === respuestas[`q${i}`]) {
+      score++;
+    }
+  }
+
+  // Dar retroalimentación
+  if (score === 4) {
+    feedback = "¡Todas las respuestas son correctas!";
+  } else {
+    feedback = `Has acertado ${score} de 4 respuestas.`;
+  }
+
+  document.getElementById("quiz-feedback").textContent = feedback;
+});
