@@ -27,7 +27,7 @@
       <button id="check-order">Verificar orden</button>
       <p id="feedback"></p>
     </section>
-    
+
     <!-- Módulo Matemático -->
     <section id="modulo-matematico">
       <h2>Calcula el cambio</h2>
@@ -35,6 +35,43 @@
       <input type="number" id="respuesta" placeholder="Escribe tu respuesta">
       <button id="check-answer">Verificar</button>
       <p id="resultado"></p>
+    </section>
+
+    <!-- Módulo de Preguntas Múltiples -->
+    <section id="preguntas">
+      <h2>Preguntas de Opción Múltiple</h2>
+      <form id="quiz-form">
+        <div class="pregunta">
+          <p>1. ¿Cuál es la capital de Chile?</p>
+          <label><input type="radio" name="q1" value="a"> a) Santiago</label><br>
+          <label><input type="radio" name="q1" value="b"> b) Valparaíso</label><br>
+          <label><input type="radio" name="q1" value="c"> c) Concepción</label>
+        </div>
+        
+        <div class="pregunta">
+          <p>2. ¿Quién cantaba Gracias a la vida?</p>
+          <label><input type="radio" name="q2" value="a"> a) Violeta Parra</label><br>
+          <label><input type="radio" name="q2" value="b"> b) Mercedes Sosa</label><br>
+          <label><input type="radio" name="q2" value="c"> c) Isabel Allende</label>
+        </div>
+        
+        <div class="pregunta">
+          <p>3. ¿Qué se celebra el 18 de septiembre en Chile?</p>
+          <label><input type="radio" name="q3" value="a"> a) Fiestas patrias</label><br>
+          <label><input type="radio" name="q3" value="b"> b) Navidad</label><br>
+          <label><input type="radio" name="q3" value="c"> c) Año nuevo</label>
+        </div>
+
+        <div class="pregunta">
+          <p>4. ¿Quién es el presidente actual de Chile?</p>
+          <label><input type="radio" name="q4" value="a"> a) Michelle Bachelet</label><br>
+          <label><input type="radio" name="q4" value="b"> b) Sebastián Piñera</label><br>
+          <label><input type="radio" name="q4" value="c"> c) Gabriel Boric</label>
+        </div>
+
+        <button type="button" id="submit-quiz">Enviar respuestas</button>
+      </form>
+      <p id="quiz-feedback"></p>
     </section>
   </main>
 
