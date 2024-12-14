@@ -1,23 +1,24 @@
 // Módulo de Orden Secuencial
-const steps = document.querySelectorAll("#steps li");
 const stepsContainer = document.getElementById("steps");
 const feedback = document.getElementById("feedback");
 
-// Añadir eventos para arrastrar y soltar
-steps.forEach((step) => {
-  step.addEventListener("dragstart", () => {
-    step.classList.add("dragging");
-  });
+// Agregar eventos a los elementos dentro de la lista
+stepsContainer.addEventListener("dragstart", (e) => {
+  if (e.target.tagName === "LI") {
+    e.target.classList.add("dragging");
+  }
+});
 
-  step.addEventListener("dragend", () => {
-    step.classList.remove("dragging");
-  });
+stepsContainer.addEventListener("dragend", (e) => {
+  if (e.target.tagName === "LI") {
+    e.target.classList.remove("dragging");
+  }
 });
 
 stepsContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
-  const afterElement = getDragAfterElement(stepsContainer, e.clientY);
   const dragging = document.querySelector(".dragging");
+  const afterElement = getDragAfterElement(stepsContainer, e.clientY);
   if (afterElement == null) {
     stepsContainer.appendChild(dragging);
   } else {
@@ -43,7 +44,7 @@ function getDragAfterElement(container, y) {
 }
 
 document.getElementById("check-order").addEventListener("click", () => {
-  const currentOrder = Array.from(document.querySelectorAll("#steps li")).map((step) => step.textContent);
+  const currentOrder = Array.from(stepsContainer.querySelectorAll("li")).map((step) => step.textContent.trim());
 
   const correctOrder = [
     "Abrir la ducha",
@@ -54,44 +55,6 @@ document.getElementById("check-order").addEventListener("click", () => {
   ];
 
   feedback.textContent = JSON.stringify(currentOrder) === JSON.stringify(correctOrder)
-    ? "¡Correcto!"
+    ? "¡Correcto! Has ordenado los pasos correctamente."
     : "El orden no es correcto. Intenta de nuevo.";
-});
-
-// Módulo Matemático
-document.getElementById("check-answer").addEventListener("click", () => {
-  const respuesta = parseInt(document.getElementById("respuesta").value);
-  const resultado = document.getElementById("resultado");
-
-  if (respuesta === 55) {
-    resultado.textContent = "¡Correcto!";
-  } else if (!isNaN(respuesta)) {
-    resultado.textContent = "Respuesta incorrecta. Intenta de nuevo.";
-  } else {
-    resultado.textContent = "Por favor, ingresa una respuesta.";
-  }
-});
-
-// Módulo de Preguntas de Selección Múltiple
-document.getElementById("check-quiz").addEventListener("click", () => {
-  const quizFeedback = document.getElementById("quiz-feedback");
-  let correctas = 0;
-
-  // Respuestas correctas
-  const respuestasCorrectas = {
-    pregunta1: "a", // Santiago
-    pregunta2: "a", // Violeta Parra
-    pregunta3: "a", // Fiestas patrias
-    pregunta4: "c", // Gabriel Boric
-  };
-
-  // Verificar cada pregunta
-  Object.keys(respuestasCorrectas).forEach((pregunta) => {
-    const seleccionada = document.querySelector(`input[name="${pregunta}"]:checked`);
-    if (seleccionada && seleccionada.value === respuestasCorrectas[pregunta]) {
-      correctas++;
-    }
-  });
-
-  quizFeedback.textContent = `Respuestas correctas: ${correctas} de 4.`;
 });
