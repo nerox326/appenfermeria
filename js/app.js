@@ -1,19 +1,18 @@
 // Módulo de Orden Secuencial
-const steps = document.querySelectorAll("#steps li");
 const stepsContainer = document.getElementById("steps");
 const feedback = document.getElementById("feedback");
 
-// Añadir eventos para arrastrar y soltar
-steps.forEach((step) => {
-  step.addEventListener("dragstart", () => {
-    step.classList.add("dragging");
-  });
-
-  step.addEventListener("dragend", () => {
-    step.classList.remove("dragging");
-  });
+// Evento para manejar el inicio del arrastre
+stepsContainer.addEventListener("dragstart", (e) => {
+  e.target.classList.add("dragging");
 });
 
+// Evento para manejar el fin del arrastre
+stepsContainer.addEventListener("dragend", (e) => {
+  e.target.classList.remove("dragging");
+});
+
+// Evento para manejar el arrastre sobre el contenedor
 stepsContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
   const afterElement = getDragAfterElement(stepsContainer, e.clientY);
@@ -25,6 +24,7 @@ stepsContainer.addEventListener("dragover", (e) => {
   }
 });
 
+// Función para obtener el elemento más cercano a la posición actual
 function getDragAfterElement(container, y) {
   const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
 
@@ -42,9 +42,9 @@ function getDragAfterElement(container, y) {
   ).element;
 }
 
+// Verificación del orden de las casillas
 document.getElementById("check-order").addEventListener("click", () => {
-  const currentOrder = Array.from(document.querySelectorAll("#steps li"))
-    .map((step) => step.textContent);
+  const currentOrder = Array.from(document.querySelectorAll("#steps li")).map((step) => step.textContent);
 
   const correctOrder = [
     "Abrir la ducha",
@@ -57,16 +57,4 @@ document.getElementById("check-order").addEventListener("click", () => {
   feedback.textContent = JSON.stringify(currentOrder) === JSON.stringify(correctOrder)
     ? "¡Correcto!"
     : "El orden no es correcto. Intenta de nuevo.";
-});
-
-// Módulo Matemático
-document.getElementById("check-answer").addEventListener("click", () => {
-  const respuesta = parseInt(document.getElementById("respuesta").value);
-  const resultado = document.getElementById("resultado");
-  
-  if (respuesta === 55) {
-    resultado.textContent = "¡Correcto!";
-  } else {
-    resultado.textContent = "Respuesta incorrecta. Intenta de nuevo.";
-  }
 });
