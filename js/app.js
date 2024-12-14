@@ -1,24 +1,23 @@
 // Módulo de Orden Secuencial
+const steps = document.querySelectorAll("#steps li");
 const stepsContainer = document.getElementById("steps");
 const feedback = document.getElementById("feedback");
 
-// Agregar eventos a los elementos dentro de la lista
-stepsContainer.addEventListener("dragstart", (e) => {
-  if (e.target.tagName === "LI") {
-    e.target.classList.add("dragging");
-  }
-});
+// Añadir eventos para arrastrar y soltar
+steps.forEach((step) => {
+  step.addEventListener("dragstart", () => {
+    step.classList.add("dragging");
+  });
 
-stepsContainer.addEventListener("dragend", (e) => {
-  if (e.target.tagName === "LI") {
-    e.target.classList.remove("dragging");
-  }
+  step.addEventListener("dragend", () => {
+    step.classList.remove("dragging");
+  });
 });
 
 stepsContainer.addEventListener("dragover", (e) => {
   e.preventDefault();
-  const dragging = document.querySelector(".dragging");
   const afterElement = getDragAfterElement(stepsContainer, e.clientY);
+  const dragging = document.querySelector(".dragging");
   if (afterElement == null) {
     stepsContainer.appendChild(dragging);
   } else {
@@ -44,7 +43,8 @@ function getDragAfterElement(container, y) {
 }
 
 document.getElementById("check-order").addEventListener("click", () => {
-  const currentOrder = Array.from(stepsContainer.querySelectorAll("li")).map((step) => step.textContent.trim());
+  const currentOrder = Array.from(document.querySelectorAll("#steps li"))
+    .map((step) => step.textContent);
 
   const correctOrder = [
     "Abrir la ducha",
@@ -55,6 +55,18 @@ document.getElementById("check-order").addEventListener("click", () => {
   ];
 
   feedback.textContent = JSON.stringify(currentOrder) === JSON.stringify(correctOrder)
-    ? "¡Correcto! Has ordenado los pasos correctamente."
+    ? "¡Correcto!"
     : "El orden no es correcto. Intenta de nuevo.";
+});
+
+// Módulo Matemático
+document.getElementById("check-answer").addEventListener("click", () => {
+  const respuesta = parseInt(document.getElementById("respuesta").value);
+  const resultado = document.getElementById("resultado");
+  
+  if (respuesta === 55) {
+    resultado.textContent = "¡Correcto!";
+  } else {
+    resultado.textContent = "Respuesta incorrecta. Intenta de nuevo.";
+  }
 });
