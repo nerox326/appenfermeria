@@ -16,6 +16,20 @@ html {
   height: 100%;
 }
 
+/* Encabezado */
+header {
+  background-color: rgba(76, 175, 80, 0.8); /* Verde semi-transparente */
+  color: white;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para el encabezado */
+}
+
+header h1, header p {
+  font-size: 1.5em;
+}
+
 /* Sección de preguntas múltiples */
 #preguntas {
   margin-top: 30px;
