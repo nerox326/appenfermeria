@@ -16,13 +16,28 @@
     <!-- Módulo de Orden Secuencial -->
     <section id="orden-secuencial">
       <h2>Ordena los pasos</h2>
-      <p>Organiza los pasos para ducharte en el orden correcto.</p>
+      <p>Introduce el orden de los pasos para ducharte, usando números del 1 al 5.</p>
       <ul id="steps">
-        <li draggable="true">Aplicar jabón</li>
-        <li draggable="true">Mojarse el cuerpo</li>
-        <li draggable="true">Abrir la ducha</li>
-        <li draggable="true">Enjuagarse</li>
-        <li draggable="true">Secarse con una toalla</li>
+        <li>
+          <span>Abrir la ducha</span>
+          <input type="number" min="1" max="5" class="step-input">
+        </li>
+        <li>
+          <span>Mojarse el cuerpo</span>
+          <input type="number" min="1" max="5" class="step-input">
+        </li>
+        <li>
+          <span>Aplicar jabón</span>
+          <input type="number" min="1" max="5" class="step-input">
+        </li>
+        <li>
+          <span>Enjuagarse</span>
+          <input type="number" min="1" max="5" class="step-input">
+        </li>
+        <li>
+          <span>Secarse con una toalla</span>
+          <input type="number" min="1" max="5" class="step-input">
+        </li>
       </ul>
       <button id="check-order">Verificar orden</button>
       <p id="feedback"></p>
@@ -35,6 +50,35 @@
       <input type="number" id="respuesta" placeholder="Escribe tu respuesta">
       <button id="check-answer">Verificar</button>
       <p id="resultado"></p>
+    </section>
+    
+    <!-- Preguntas de Selección Múltiple -->
+    <section id="preguntas-seleccion">
+      <h2>Preguntas de selección múltiple</h2>
+      <form id="quiz">
+        <p>1. ¿Cuál es la capital de Chile?</p>
+        <label><input type="radio" name="pregunta1" value="a"> a) Santiago</label><br>
+        <label><input type="radio" name="pregunta1" value="b"> b) Valparaíso</label><br>
+        <label><input type="radio" name="pregunta1" value="c"> c) Concepción</label><br>
+
+        <p>2. ¿Quién cantaba Gracias a la vida?</p>
+        <label><input type="radio" name="pregunta2" value="a"> a) Violeta Parra</label><br>
+        <label><input type="radio" name="pregunta2" value="b"> b) Mercedes Sosa</label><br>
+        <label><input type="radio" name="pregunta2" value="c"> c) Isabel Allende</label><br>
+
+        <p>3. ¿Qué se celebra el 18 de septiembre en Chile?</p>
+        <label><input type="radio" name="pregunta3" value="a"> a) Fiestas patrias</label><br>
+        <label><input type="radio" name="pregunta3" value="b"> b) Navidad</label><br>
+        <label><input type="radio" name="pregunta3" value="c"> c) Año nuevo</label><br>
+
+        <p>4. ¿Quién es el presidente actual de Chile?</p>
+        <label><input type="radio" name="pregunta4" value="a"> a) Michelle Bachelet</label><br>
+        <label><input type="radio" name="pregunta4" value="b"> b) Sebastián Piñera</label><br>
+        <label><input type="radio" name="pregunta4" value="c"> c) Gabriel Boric</label><br>
+
+        <button type="button" id="check-quiz">Verificar respuestas</button>
+      </form>
+      <p id="quiz-feedback"></p>
     </section>
   </main>
 
