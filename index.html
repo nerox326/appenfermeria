@@ -16,28 +16,13 @@
     <!-- Módulo de Orden Secuencial -->
     <section id="orden-secuencial">
       <h2>Ordena los pasos</h2>
-      <p>Introduce el orden de los pasos para ducharte, usando números del 1 al 5.</p>
+      <p>Organiza los pasos para ducharte en el orden correcto.</p>
       <ul id="steps">
-        <li>
-          <span>Abrir la ducha</span>
-          <input type="number" min="1" max="5" class="step-input">
-        </li>
-        <li>
-          <span>Mojarse el cuerpo</span>
-          <input type="number" min="1" max="5" class="step-input">
-        </li>
-        <li>
-          <span>Aplicar jabón</span>
-          <input type="number" min="1" max="5" class="step-input">
-        </li>
-        <li>
-          <span>Enjuagarse</span>
-          <input type="number" min="1" max="5" class="step-input">
-        </li>
-        <li>
-          <span>Secarse con una toalla</span>
-          <input type="number" min="1" max="5" class="step-input">
-        </li>
+        <li draggable="true">Aplicar jabón</li>
+        <li draggable="true">Mojarse el cuerpo</li>
+        <li draggable="true">Abrir la ducha</li>
+        <li draggable="true">Enjuagarse</li>
+        <li draggable="true">Secarse con una toalla</li>
       </ul>
       <button id="check-order">Verificar orden</button>
       <p id="feedback"></p>
