@@ -4,9 +4,11 @@ body {
   margin: 0;
   padding: 0;
   background-image: url('https://ethic.es/wp-content/uploads/2021/06/restaurar-5-rec-2-rec-def.jpg'); /* Imagen de fondo tipo bosque */
-  background-size: cover;
+  background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+  background-position: center center; /* Centra la imagen de fondo */
   color: #fff;
 }
+
 
 header {
   background-color: rgba(0, 128, 0, 0.7); /* Verde semitransparente */
