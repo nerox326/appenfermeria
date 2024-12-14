@@ -1,3 +1,4 @@
+
 // Verificar respuestas del quiz
 const quizForm = document.getElementById("quiz-form");
 const quizFeedback = document.getElementById("quiz-feedback");
@@ -17,4 +18,3 @@ score++;
 }
 quizFeedback.textContent = Tu puntuación es ${score} de ${Object.keys(answers).length};
 });
-
